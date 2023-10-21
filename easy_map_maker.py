@@ -3,9 +3,24 @@ from matplotlib import pyplot as plt
 from PIL import Image
 import colorsys
 
-def make_map_black_white(max_val, min_val, file):
+def find_max_and_min(file):
+    max = -1000
+    min = 1000
+    with open(file, 'r') as r:
+        for i in r.readlines():
+            for j in i.split(','):
+                each = float(j)
+                if(each > max): max = each
+                elif(each < min): min = each
 
-    difference = max_val-min_val
+    print(f"Min: {min}, Max: {max}")
+    return [max, min]
+
+def make_map_black_white(file, out_name, invert):
+    # Returns max and min vals of the file: [max, min]
+    vals = find_max_and_min(file)
+
+    difference = vals[0]-vals[1]
     img = []
 
     with open(file, 'r') as r:
@@ -24,7 +39,11 @@ def make_map_black_white(max_val, min_val, file):
                 # img[i].append([height, .99, .99])
                 
                 # Height is transformed to a percentage from the minimum value to the maximum value
-                height = (difference-(height-min_val))/difference
+                if(invert):
+                    height = (difference-height+vals[1])/difference
+                else:
+                    height = (height-vals[1])/difference
+
                 
                 # Puts height on the correct 0-255 scale
                 # rounding to 3 decimal places makes calculation faster and does not affect the color outcome
@@ -38,10 +57,13 @@ def make_map_black_white(max_val, min_val, file):
 
     im = Image.fromarray(np.uint8(img))
 
-    im.save('CheckHeight.png')
+    im.save(out_name + '.png')
 
-def make_map_from_hsv(max_val, min_val, file):
-    difference = max_val-min_val
+def make_map_from_hsv(file, out_name, invert):
+    # Returns max and min vals of the file: [max, min]
+    vals = find_max_and_min(file)
+
+    difference = vals[0]-vals[1]
     img = []
 
     with open(file, 'r') as r:
@@ -56,7 +78,11 @@ def make_map_from_hsv(max_val, min_val, file):
                 height = round(float(each), 4)
                   
                 # height is on scale from [0, 470] first and last 100 affect the other 2 variables
-                height = int((difference-(height-min_val))/difference*470)
+                if(invert):
+                    height = int((difference-height+vals[1])/difference*470)
+                else:
+                    height = int((height-vals[1])/difference*470)
+
 
                 # If it is over color scale then value will be saved and decrease the saturation
                 saturation = 100
@@ -80,6 +106,7 @@ def make_map_from_hsv(max_val, min_val, file):
                 img[i].append(save)
     print('saving image')
     im = Image.fromarray(np.uint8(img))
-    im.save('CheckHeightHsv2.png')
+    im.save(out_name + '.png')
 
-make_map_from_hsv(1648.68, -418.92, "FY23_ADC_Height_PeakNearShackleton.csv")
+# find_max_and_min('FY23_ADC_Slope_PeakNearShackleton.csv')
+make_map_from_hsv("FY23_ADC_Slope_PeakNearShackleton.csv", 'Slope4', False)
