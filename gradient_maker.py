@@ -2,12 +2,7 @@ import colorsys
 from PIL import Image
 import numpy as np
 
-from easy_map_maker import find_max_and_min
-
 def make_gradient_hsv(file):
-    # Creates list of [max, min] values in the given file
-    vals = find_max_and_min(file)
-
     img = []
 
     print('starting gradient')
