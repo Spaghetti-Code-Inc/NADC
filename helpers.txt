@@ -3,3 +3,6 @@ https://docs.google.com/document/d/1va8qylyR7QcHslVal_gsR0y9kx9Rc2trlf-JYwsOawY/
 
 Data for landing sites (halfway through page): 
 https://www.nasa.gov/learning-resources/app-development-challenge/adc-handbook-and-coding-components-2024/
+
+Models premade by nasa:
+https://github.com/nasa/NASA-3D-Resources/blob/master/3D%20Models/Astronaut/astnt1_1.tga
