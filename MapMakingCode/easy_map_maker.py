@@ -108,6 +108,6 @@ def make_map_from_hsv(file, out_name, invert):
     im = Image.fromarray(np.uint8(img))
     im.save(out_name + '.png')
 
-# find_max_and_min('FY23_ADC_Slope_PeakNearShackleton.csv')
+find_max_and_min('FY23_ADC_Height_PeakNearShackleton.csv')
 # make_map_from_hsv("FY23_ADC_Slope_PeakNearShackleton.csv", 'Slope4', False)
 # print(find_max_and_min("FY23_ADC_Height_PeakNearShackleton.csv"))
