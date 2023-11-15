@@ -94,9 +94,9 @@ def make_map_from_hsv(file, out_name, invert):
                 save.append(round(255*rgb[2]))
                 img[i].append(save)
     print('saving image')
-    im = Image.fromarray(np.uint16(img))
+    im = Image.fromarray(np.uint8(img))
     im.save(out_name + '.png')
 
 # find_max_and_min('FY23_ADC_Height_PeakNearShackleton.csv')
-make_map_black_white("FY23_ADC_Height_PeakNearShackleton.csv", 'HeightGrayscale4', False)
+make_map_from_hsv("FY23_ADC_Height_PeakNearShackleton.csv", 'ShackletonHeightMap', True)
 # print(find_max_and_min("FY23_ADC_Height_PeakNearShackleton.csv"))

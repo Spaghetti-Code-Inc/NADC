@@ -59,10 +59,15 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\2023.1.19f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Controller.cs" />
-    <Compile Include="Assets\TestScript.cs" />
-    <Compile Include="Assets\ViewOfPlayer.cs" />
-    <Compile Include="Assets\Rotation.cs" />
+    <Compile Include="Assets\Scripts\cameraFollow.cs" />
+    <Compile Include="Assets\Scripts\ToggleTerrains.cs" />
+    <Compile Include="Assets\Scripts\ViewOfPlayer.cs" />
+    <Compile Include="Assets\Scripts\Rotation.cs" />
+    <Compile Include="Assets\Scripts\Controller.cs" />
+    <Compile Include="Assets\Scripts\drive.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\wheels_assets\etc\MatCap.shader" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
